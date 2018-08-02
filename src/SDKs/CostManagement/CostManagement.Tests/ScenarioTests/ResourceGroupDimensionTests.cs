@@ -6,15 +6,18 @@ using Costmanagement.Models;
 using CostManagement.Tests.Helpers;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Xunit;
 
 namespace CostManagement.Tests.ScenarioTests
 {
-    public class SubscriptionDimensionTests : TestBase
+    public class ResourceGroupDimensionTests : TestBase
     {
         protected const string SubscriptionId = "39ae8bea-c3fd-4e24-8936-7c34974326ce";
+        protected const string ResourceGroupName = "system.shanghai";
         protected const int NumberOfItems = 3;
         protected const string CategoryFilter = "ResourceId";
         protected static DateTime StartDate = new DateTime(2018, 3, 1);
@@ -22,14 +25,14 @@ namespace CostManagement.Tests.ScenarioTests
         protected const string DateFormat = "yyyy-MM-dd";
 
         [Fact]
-        public void SubscriptionDimensionDefaultTest()
+        public void ResourceGroupDimensionDefaultTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
-                    context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK});
+                    context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
                 costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List();
+                var result = costMgmtClient.ResourceGroupDimensions.List(ResourceGroupName);
                 Assert.NotNull(result);
                 Assert.True(result.IsAny());
                 foreach (var item in result)
@@ -40,14 +43,15 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithNextPageLinkTest()
+        public void ResourceGroupDimensionWithNextPageLinkTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
                 costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.ResourceGroupDimensions.List(
+                    ResourceGroupName,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems
@@ -63,14 +67,15 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithExpandDataTest()
+        public void ResourceGroupDimensionWithExpandDataTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
                 costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.ResourceGroupDimensions.List(
+                    ResourceGroupName,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
@@ -87,18 +92,19 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithCategoryFilterTest()
+        public void ResourceGroupDimensionWithCategoryFilterTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
                 costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.ResourceGroupDimensions.List(
+                    ResourceGroupName,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
-                        Filter = "properties/category eq '" + CategoryFilter + "'" 
+                        Filter = "properties/category eq '" + CategoryFilter + "'"
                     });
                 Assert.NotNull(result);
                 Assert.True(result.IsAny());
@@ -111,7 +117,7 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithDateFilterTest()
+        public void ResourceGroupDimensionWithDateFilterTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
@@ -121,7 +127,8 @@ namespace CostManagement.Tests.ScenarioTests
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
                 costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.ResourceGroupDimensions.List(
+                    ResourceGroupName,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
@@ -136,7 +143,6 @@ namespace CostManagement.Tests.ScenarioTests
                 }
             }
         }
-
 
         private static void ValidateProperties(Dimension item, bool dataExpanded = false, string categoryFilter = null, bool dateFilter = false)
         {
@@ -153,7 +159,7 @@ namespace CostManagement.Tests.ScenarioTests
 
             if (!string.IsNullOrWhiteSpace(categoryFilter))
             {
-                Assert.Equal(categoryFilter, item.Category, ignoreCase : true);
+                Assert.Equal(categoryFilter, item.Category, ignoreCase: true);
             }
 
             if (dateFilter)

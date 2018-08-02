@@ -6,15 +6,17 @@ using Costmanagement.Models;
 using CostManagement.Tests.Helpers;
 using Microsoft.Rest.ClientRuntime.Azure.TestFramework;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Text;
 using Xunit;
 
 namespace CostManagement.Tests.ScenarioTests
 {
-    public class SubscriptionDimensionTests : TestBase
+    public class BillingAccountDimensionTests : TestBase
     {
-        protected const string SubscriptionId = "39ae8bea-c3fd-4e24-8936-7c34974326ce";
+        protected const string BillingAccountId = "100";
         protected const int NumberOfItems = 3;
         protected const string CategoryFilter = "ResourceId";
         protected static DateTime StartDate = new DateTime(2018, 3, 1);
@@ -22,14 +24,13 @@ namespace CostManagement.Tests.ScenarioTests
         protected const string DateFormat = "yyyy-MM-dd";
 
         [Fact]
-        public void SubscriptionDimensionDefaultTest()
+        public void BillingAccountnDimensionDefaultTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
-                    context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK});
-                costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List();
+                    context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
+                var result = costMgmtClient.BillingAccountDimensions.List(BillingAccountId);
                 Assert.NotNull(result);
                 Assert.True(result.IsAny());
                 foreach (var item in result)
@@ -40,14 +41,14 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithNextPageLinkTest()
+        public void BillingAccountDimensionWithNextPageLinkTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
-                costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.BillingAccountDimensions.List(
+                    BillingAccountId,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems
@@ -63,14 +64,14 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithExpandDataTest()
+        public void BillingAccountDimensionWithExpandDataTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
-                costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.BillingAccountDimensions.List(
+                    BillingAccountId,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
@@ -87,18 +88,18 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithCategoryFilterTest()
+        public void BillingAccountDimensionWithCategoryFilterTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
-                costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.BillingAccountDimensions.List(
+                    BillingAccountId,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
-                        Filter = "properties/category eq '" + CategoryFilter + "'" 
+                        Filter = "properties/category eq '" + CategoryFilter + "'"
                     });
                 Assert.NotNull(result);
                 Assert.True(result.IsAny());
@@ -111,7 +112,7 @@ namespace CostManagement.Tests.ScenarioTests
         }
 
         [Fact]
-        public void SubscriptionDimensionWithDateFilterTest()
+        public void BillingAccountDimensionWithDateFilterTest()
         {
             using (MockContext context = MockContext.Start(this.GetType().FullName))
             {
@@ -120,8 +121,8 @@ namespace CostManagement.Tests.ScenarioTests
 
                 var costMgmtClient = CostManagementTestUtilities.GetCostManagementClient(
                     context, new RecordedDelegatingHandler { StatusCodeToReturn = HttpStatusCode.OK });
-                costMgmtClient.SubscriptionId = SubscriptionId;
-                var result = costMgmtClient.SubscriptionDimensions.List(
+                var result = costMgmtClient.BillingAccountDimensions.List(
+                    BillingAccountId,
                     odataQuery: new Microsoft.Rest.Azure.OData.ODataQuery<Dimension>
                     {
                         Top = NumberOfItems,
@@ -153,7 +154,7 @@ namespace CostManagement.Tests.ScenarioTests
 
             if (!string.IsNullOrWhiteSpace(categoryFilter))
             {
-                Assert.Equal(categoryFilter, item.Category, ignoreCase : true);
+                Assert.Equal(categoryFilter, item.Category, ignoreCase: true);
             }
 
             if (dateFilter)
@@ -162,5 +163,6 @@ namespace CostManagement.Tests.ScenarioTests
                 Assert.True(item.UsageEnd == EndDate);
             }
         }
+
     }
 }
