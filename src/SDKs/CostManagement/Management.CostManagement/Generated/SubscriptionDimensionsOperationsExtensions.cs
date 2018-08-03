@@ -26,7 +26,7 @@ namespace Costmanagement
     {
             /// <summary>
             /// Lists the dimensions by subscription Id.
-            /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+            /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -47,7 +47,7 @@ namespace Costmanagement
 
             /// <summary>
             /// Lists the dimensions by subscription Id.
-            /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+            /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.

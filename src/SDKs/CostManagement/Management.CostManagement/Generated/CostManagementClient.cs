@@ -335,7 +335,7 @@ namespace Costmanagement
         }
         /// <summary>
         /// Lists the usage data for subscriptionId.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='parameters'>
         /// Parameters supplied to the CreateOrUpdate Report Config operation.
@@ -527,7 +527,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Lists the usage data for subscriptionId and resource group.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -728,7 +728,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Lists the usage data for billing account.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='billingAccountId'>
         /// BillingAccount ID

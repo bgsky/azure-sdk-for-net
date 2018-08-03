@@ -52,7 +52,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Lists all report configs for a subscription.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -226,7 +226,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Lists all report configs for a resource group under a subscription.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -409,7 +409,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Gets the report config for a subscription by report config name.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -595,7 +595,7 @@ namespace Costmanagement
         /// requires latest eTag to be set in the request mandatorily. You may obtain
         /// the latest eTag by performing a get operation. Create operation does not
         /// require eTag.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -814,7 +814,7 @@ namespace Costmanagement
 
         /// <summary>
         /// The operation to delete a report.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -977,7 +977,7 @@ namespace Costmanagement
         /// <summary>
         /// Gets the report config for a resource group under a subscription by report
         /// config name.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -1172,7 +1172,7 @@ namespace Costmanagement
         /// requires latest eTag to be set in the request mandatorily. You may obtain
         /// the latest eTag by performing a get operation. Create operation does not
         /// require eTag.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -1400,7 +1400,7 @@ namespace Costmanagement
 
         /// <summary>
         /// The operation to delete a report config.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.

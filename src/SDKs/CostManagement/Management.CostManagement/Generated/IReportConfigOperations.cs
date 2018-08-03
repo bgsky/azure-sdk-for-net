@@ -25,7 +25,7 @@ namespace Costmanagement
     {
         /// <summary>
         /// Lists all report configs for a subscription.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='customHeaders'>
         /// The headers that will be added to request.
@@ -45,7 +45,7 @@ namespace Costmanagement
         Task<AzureOperationResponse<ReportConfigListResult>> ListWithHttpMessagesAsync(Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Lists all report configs for a resource group under a subscription.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -68,7 +68,7 @@ namespace Costmanagement
         Task<AzureOperationResponse<ReportConfigListResult>> ListByResourceGroupNameWithHttpMessagesAsync(string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// Gets the report config for a subscription by report config name.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -94,7 +94,7 @@ namespace Costmanagement
         /// requires latest eTag to be set in the request mandatorily. You may
         /// obtain the latest eTag by performing a get operation. Create
         /// operation does not require eTag.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -120,7 +120,7 @@ namespace Costmanagement
         Task<AzureOperationResponse<ReportConfig>> CreateOrUpdateWithHttpMessagesAsync(string reportConfigName, ReportConfig parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// The operation to delete a report.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='reportConfigName'>
         /// Report Config Name.
@@ -141,7 +141,7 @@ namespace Costmanagement
         /// <summary>
         /// Gets the report config for a resource group under a subscription by
         /// report config name.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -170,7 +170,7 @@ namespace Costmanagement
         /// requires latest eTag to be set in the request mandatorily. You may
         /// obtain the latest eTag by performing a get operation. Create
         /// operation does not require eTag.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.
@@ -199,7 +199,7 @@ namespace Costmanagement
         Task<AzureOperationResponse<ReportConfig>> CreateOrUpdateByResourceGroupNameWithHttpMessagesAsync(string resourceGroupName, string reportConfigName, ReportConfig parameters, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
         /// The operation to delete a report config.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Azure Resource Group Name.

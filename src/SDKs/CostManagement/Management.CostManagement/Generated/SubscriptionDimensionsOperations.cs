@@ -53,7 +53,7 @@ namespace Costmanagement
 
         /// <summary>
         /// Lists the dimensions by subscription Id.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='odataQuery'>
         /// OData parameters to apply to the operation.

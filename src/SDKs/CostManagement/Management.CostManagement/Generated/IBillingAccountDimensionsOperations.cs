@@ -26,7 +26,7 @@ namespace Costmanagement
     {
         /// <summary>
         /// Lists the dimensions by billingAccount Id.
-        /// <see href="https://docs.microsoft.com/en-us/rest/api/consumption/" />
+        /// <see href="https://docs.microsoft.com/en-us/rest/api/costmanagement/" />
         /// </summary>
         /// <param name='billingAccountId'>
         /// BillingAccount ID
